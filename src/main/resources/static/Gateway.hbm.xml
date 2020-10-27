@@ -1,0 +1,12 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>    
+	 <class name="com.musala.gateway.hibernate.model.Gateway" table="gateway">
+	 
+            <id name="serialnum" column="serialnum" type="String"></id>
+          <property name="name" column="name" type="String" />
+          <property name="ipv4" column="ipv4" type="String" />
+          
+          <one-to-many name="Peripheral" cascade="all" class="com.musala.gateway.hibernate.model.Peripheral"/>
+     </class>
+         
+</hibernate-mapping>
