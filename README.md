@@ -46,12 +46,58 @@ spring.datasource.password = MySecret<br/>
 
 Option 1 - run from Spring Tool Suite <br/>
 Import Gateways and create new SpringBoot project in STS. Run build with Apache Maven on pom.xml as follows:<br/>
-mvn clean install<br/>
-Run as Spring Boot App -  mvn spring-boot:run<br/>
+<b>mvn clean install</b><br/>
+<b>Run as Spring Boot App</b> (mvn spring-boot:run)<br/>
 <br/>
 Option 2 - run in batch mode by copying jar file <br/>
-cp /Users/dimitretcharaktchiev/.m2/repository/com/musala/gateway/0.0.1-SNAPSHOT/gateway-0.0.1-SNAPSHOT.jar .<br/>
-java -jar  gateway-0.0.1-SNAPSHOT.jar<br/>
+<b>cp /Users/dimitretcharaktchiev/.m2/repository/com/musala/gateway/0.0.1-SNAPSHOT/gateway-0.0.1-SNAPSHOT.jar .</b><br/>
+<b>java -jar  gateway-0.0.1-SNAPSHOT.jar</b><br/>
 &nbsp;
+
+Note: Hibernate will automatically create the Gateways database upon run, refer to Gateways.sql for database setup, if required.
+
+**4. API Testing samples**
+
+<b>Create a Gateway</b> <br>
+POST /api/v1/gateways HTTP/1.1<br/>
+Host: localhost:8080<br/>
+Content-Type: application/json<br/>
+Cache-Control: no-cache<br/>
+Postman-Token: fdd4d26f-bc4a-3af1-e3df-4eaf6f1ee95d<br/>
+
+{<br/>
+	"serialnum": "Gateway1",<br/>
+	"name": "Musala1",<br/>
+	"ipv4": "255.255.255.1",<br/>
+	"devices":<br/>
+	[
+		{ "id": "1",<br/>
+		  "vendor": "Sysco 1",<br/>
+		  "datecreated": "2020-10-25",<br/>
+		  "status": "online"<br/>
+		},<br/>
+		{ "id": "2",<br/>
+		  "vendor": "Sysco 2",<br/>
+		  "datecreated": "2020-10-25",<br/>
+		  "status": "offline"<br/>
+		}<br/>
+	]<br/>
+}<br/>
+
+<br>
+<b>Create a Peripheral device</b> <br>
+POST /api/v1/gateways/peripheral HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+Postman-Token: f9c96b38-ab2b-3488-0b7a-1ee6cf113e1d
+
+{
+                "id": "7",
+                "vendor": "Nysco 1",
+                "datecreated": "2020-10-27",
+                "status": "online",
+                "serialnum": "Gateway1"
+}
 
 
